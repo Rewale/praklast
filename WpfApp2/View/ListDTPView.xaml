@@ -20,9 +20,17 @@
 
             </Grid.RowDefinitions>
             <DataGrid ItemsSource="{Binding DTPs}" AutoGenerateColumns="False" SelectedItem="{Binding selectedDTP}">
-                <DataGrid.Columns>
+            
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Rectangle Width="30" Fill="{Binding ColorID}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
 
-                   
+                </DataGridTemplateColumn>
+
                 <DataGridTextColumn Header="ID" Binding="{Binding id}">
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Info" Binding="{Binding Info}"></DataGridTextColumn>

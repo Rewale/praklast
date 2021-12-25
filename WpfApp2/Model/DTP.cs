@@ -32,5 +32,16 @@ namespace WpfApp2.Model
         public virtual ICollection<DTP_Photo> DTP_Photo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Members_DTP> Members_DTP { get; set; }
+
+        public string ColorID
+        {
+            get
+            {
+                if (Dies == null)
+                    return "Red";
+
+                return "White";
+            }            
+        }
     }
 }

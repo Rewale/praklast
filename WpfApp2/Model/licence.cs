@@ -11,8 +11,7 @@ namespace WpfApp2.Model
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-
+    
     public partial class licence
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -44,21 +43,6 @@ namespace WpfApp2.Model
                     i += item.letter + " ";
                 }
                 return i;
-            }
-        }
-
-        public string ColorID
-        {
-            get
-            {
-                try
-                {
-                    return Status_history_change.Last().Status.color;
-                }
-                catch
-                {
-                    return "Green";
-                }
             }
         }
     }

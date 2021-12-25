@@ -46,7 +46,7 @@ namespace WpfApp2.ViewModel
             }
         }
 
-        private const int seconds = 10;
+        private const int seconds = 60;
         private const int countTries = 3;
 
         private bool isblock = false;
@@ -55,9 +55,8 @@ namespace WpfApp2.ViewModel
         DispatcherTimer timer;
         public AuthViewModel(Action close)
         {
-            RelayCommand.timerClose.Tick += new EventHandler(RelayCommand.timerClose_tick);
-            RelayCommand.timerClose.Interval = new TimeSpan(0, 0, 1);
-            RelayCommand.timerClose.Start();            
+            RelayCommand.timerClose.Stop();
+
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = new TimeSpan(0, 0, 1);
@@ -75,6 +74,10 @@ namespace WpfApp2.ViewModel
                     MainView c = new MainView();
                     c.Show();
                     CloseView();
+
+                    RelayCommand.timerClose.Tick += new EventHandler(RelayCommand.timerClose_tick);
+                    RelayCommand.timerClose.Interval = new TimeSpan(0, 0, 1);
+                    RelayCommand.timerClose.Start();
 
                 }
                 else

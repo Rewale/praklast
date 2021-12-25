@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp2.View"
         xmlns:Model="clr-namespace:WpfApp2.Model" x:Class="WpfApp2.View.AddDTPDialogView"
         mc:Ignorable="d"
-        Title="AddDTPDialogView" Height="800" Width="1200" Loaded="Window_Loaded_1">
+        Title="AddDTPDialogView" Height="900" Width="1200" Loaded="Window_Loaded_1">
 
     <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Center" Width="1200">
 
@@ -38,13 +38,20 @@
 
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="0">
+            <DataGrid x:Name="members" Grid.Column="0">
 
             </DataGrid>
-            <DataGrid Grid.Column="1">
+            <DataGrid x:Name="photo" Grid.Column="1">
 
             </DataGrid>
         </Grid>
+        <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10">Нарисуйте схему происшествия</TextBlock>
+
+        <Border Width="1000" Height="400" BorderBrush="Black" BorderThickness="2">
+            <InkCanvas Name="ink">
+
+            </InkCanvas>
+        </Border>
         
         <Button Content="Добавить" HorizontalAlignment="Center" Margin="10"  Click="Button_Click" VerticalAlignment="Top" Width="183"/>
 

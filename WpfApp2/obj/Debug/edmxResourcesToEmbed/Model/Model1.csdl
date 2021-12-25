@@ -132,7 +132,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Dies" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Class" Type="Int32" />
