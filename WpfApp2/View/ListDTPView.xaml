@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="WpfApp2.View.ListDTPView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2.View"
+             mc:Ignorable="d" 
+             xmlns:viewModel ="clr-namespace:WpfApp2.ViewModel"
+
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <viewModel:ListDTPViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.15*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <DataGrid ItemsSource="{Binding DTPs}" AutoGenerateColumns="False" SelectedItem="{Binding selectedDTP}">
+                <DataGrid.Columns>
+
+                   
+                <DataGridTextColumn Header="ID" Binding="{Binding id}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Info" Binding="{Binding Info}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Dies" Binding="{Binding Dies}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Class" Binding="{Binding Class}"></DataGridTextColumn>
+                <DataGridTextColumn Header="data_time" Binding="{Binding data_time}"></DataGridTextColumn>
+                   
+
+                </DataGrid.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction
+                            Command="{Binding DoubleCommand}"
+                            CommandParameter="{Binding selectedDriver}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </DataGrid>
+
+            <Button Command="{Binding addDTP}" Content="Добавить водителя" Grid.Row="1" ></Button>
+        </Grid>
+</UserControl>

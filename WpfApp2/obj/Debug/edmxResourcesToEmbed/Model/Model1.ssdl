@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище autoinspecModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Auto">
+    <Key>
+      <PropertyRef Name="VIN" />
+    </Key>
+    <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="year" Type="int" />
+    <Property Name="weight" Type="int" />
+    <Property Name="color" Type="int" />
+    <Property Name="TypeOfDriveId" Type="int" />
+    <Property Name="owner" Type="int" />
+    <Property Name="TypeOfEngineId" Type="int" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="letter" />
+    </Key>
+    <Property Name="letter" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryLicence">
+    <Key>
+      <PropertyRef Name="id_licence" />
+      <PropertyRef Name="category" />
+    </Key>
+    <Property Name="id_licence" Type="int" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Class_DTP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Color">
+    <Key>
+      <PropertyRef Name="Color num" />
+    </Key>
+    <Property Name="Color num" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Color code" Type="nvarchar" MaxLength="255" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Color name" Type="nvarchar" MaxLength="255" />
+    <Property Name="is mettalic?" Type="bit" />
+    <Property Name="Name EN" Type="nvarchar" MaxLength="255" />
+    <Property Name="Color name (EN)" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Drivers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="middlename" Type="nvarchar" MaxLength="255" />
+    <Property Name="passport serial" Type="float" />
+    <Property Name="passport number" Type="float" />
+    <Property Name="postcode" Type="float" />
+    <Property Name="address" Type="nvarchar" MaxLength="255" />
+    <Property Name="address life" Type="nvarchar" MaxLength="255" />
+    <Property Name="company" Type="nvarchar" MaxLength="255" />
+    <Property Name="jobname" Type="nvarchar" MaxLength="255" />
+    <Property Name="phone" Type="float" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" />
+    <Property Name="photo" Type="nvarchar" MaxLength="255" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="photoBinary" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="DTP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Info" Type="text" />
+    <Property Name="Dies" Type="nchar" MaxLength="10" />
+    <Property Name="Class" Type="int" />
+    <Property Name="data_time" Type="date" />
+  </EntityType>
+  <EntityType Name="DTP_Photo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="Id_DTP" Type="int" />
+  </EntityType>
+  <EntityType Name="EngineType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="eng_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="licence">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="licence date" Type="date" />
+    <Property Name="expire date" Type="date" />
+    <Property Name="licence series" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="owner" Type="int" />
+  </EntityType>
+  <EntityType Name="Members_DTP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nomer" Type="int" />
+    <Property Name="Id_DTP" Type="int" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="color" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Status_history_change">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id_VU" Type="int" />
+    <Property Name="id_Status" Type="int" />
+    <Property Name="desk" Type="text" />
+    <Property Name="date" Type="date" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TypeOfDrive">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Auto_Color">
+    <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Color">
+        <PropertyRef Name="Color num" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_Drivers">
+    <End Role="Drivers" Type="Self.Drivers" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_EngineType">
+    <End Role="TypeOfDrive" Type="Self.TypeOfDrive" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfDrive">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="TypeOfDriveId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_EngineType2">
+    <End Role="EngineType" Type="Self.EngineType" Multiplicity="0..1" />
+    <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EngineType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="TypeOfEngineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryLicence_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="CategoryLicence" Type="Self.CategoryLicence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="letter" />
+      </Principal>
+      <Dependent Role="CategoryLicence">
+        <PropertyRef Name="category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CategoryLicence_licence">
+    <End Role="licence" Type="Self.licence" Multiplicity="1" />
+    <End Role="CategoryLicence" Type="Self.CategoryLicence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="licence">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="CategoryLicence">
+        <PropertyRef Name="id_licence" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DTP_Class_DTP">
+    <End Role="Class_DTP" Type="Self.Class_DTP" Multiplicity="0..1" />
+    <End Role="DTP" Type="Self.DTP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class_DTP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DTP">
+        <PropertyRef Name="Class" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DTP_Photo_DTP">
+    <End Role="DTP" Type="Self.DTP" Multiplicity="0..1" />
+    <End Role="DTP_Photo" Type="Self.DTP_Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DTP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DTP_Photo">
+        <PropertyRef Name="Id_DTP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_licence_Drivers">
+    <End Role="Drivers" Type="Self.Drivers" Multiplicity="0..1" />
+    <End Role="licence" Type="Self.licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="licence">
+        <PropertyRef Name="owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Members_DTP_DTP">
+    <End Role="DTP" Type="Self.DTP" Multiplicity="0..1" />
+    <End Role="Members_DTP" Type="Self.Members_DTP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DTP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Members_DTP">
+        <PropertyRef Name="Id_DTP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_history_change_licence">
+    <End Role="licence" Type="Self.licence" Multiplicity="0..1" />
+    <End Role="Status_history_change" Type="Self.Status_history_change" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="licence">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Status_history_change">
+        <PropertyRef Name="id_VU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_history_change_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Status_history_change" Type="Self.Status_history_change" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Status_history_change">
+        <PropertyRef Name="id_Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище autoinspecModelContainer">
+    <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CategoryLicence" EntityType="Self.CategoryLicence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Class_DTP" EntityType="Self.Class_DTP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTP" EntityType="Self.DTP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DTP_Photo" EntityType="Self.DTP_Photo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EngineType" EntityType="Self.EngineType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="licence" EntityType="Self.licence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members_DTP" EntityType="Self.Members_DTP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status_history_change" EntityType="Self.Status_history_change" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Auto_Color" Association="Self.FK_Auto_Color">
+      <End Role="Color" EntitySet="Color" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_Drivers" Association="Self.FK_Auto_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_EngineType" Association="Self.FK_Auto_EngineType">
+      <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_EngineType2" Association="Self.FK_Auto_EngineType2">
+      <End Role="EngineType" EntitySet="EngineType" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryLicence_Category" Association="Self.FK_CategoryLicence_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="CategoryLicence" EntitySet="CategoryLicence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CategoryLicence_licence" Association="Self.FK_CategoryLicence_licence">
+      <End Role="licence" EntitySet="licence" />
+      <End Role="CategoryLicence" EntitySet="CategoryLicence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DTP_Class_DTP" Association="Self.FK_DTP_Class_DTP">
+      <End Role="Class_DTP" EntitySet="Class_DTP" />
+      <End Role="DTP" EntitySet="DTP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DTP_Photo_DTP" Association="Self.FK_DTP_Photo_DTP">
+      <End Role="DTP" EntitySet="DTP" />
+      <End Role="DTP_Photo" EntitySet="DTP_Photo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_licence_Drivers" Association="Self.FK_licence_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="licence" EntitySet="licence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Members_DTP_DTP" Association="Self.FK_Members_DTP_DTP">
+      <End Role="DTP" EntitySet="DTP" />
+      <End Role="Members_DTP" EntitySet="Members_DTP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_history_change_licence" Association="Self.FK_Status_history_change_licence">
+      <End Role="licence" EntitySet="licence" />
+      <End Role="Status_history_change" EntitySet="Status_history_change" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_history_change_Status" Association="Self.FK_Status_history_change_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Status_history_change" EntitySet="Status_history_change" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

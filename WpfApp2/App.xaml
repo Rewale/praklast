@@ -1,0 +1,36 @@
+﻿<Application x:Class="WpfApp2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp2"
+            xmlns:view = "clr-namespace:WpfApp2.View"
+             xmlns:viewModel ="clr-namespace:WpfApp2.ViewModel"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             StartupUri="View/MainWindow.xaml"          
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources />
+                <ui:XamlControlsResources />
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+                <view:MainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ListDriverViewModel}">
+                <view:ListDriverView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ListLicensesViewModel}">
+                <view:ListLicensesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ListDTPViewModel}">
+                <view:ListDTPView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ListAutoViewModel}">
+                <view:ListAutoView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

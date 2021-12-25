@@ -1,0 +1,906 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище autoinspecModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="year" Type="int" />
+          <Property Name="weight" Type="int" />
+          <Property Name="color" Type="int" />
+          <Property Name="TypeOfDriveId" Type="int" />
+          <Property Name="owner" Type="int" />
+          <Property Name="TypeOfEngineId" Type="int" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="letter" />
+          </Key>
+          <Property Name="letter" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoryLicence">
+          <Key>
+            <PropertyRef Name="id_licence" />
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Name="id_licence" Type="int" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class_DTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="Color num" />
+          </Key>
+          <Property Name="Color num" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Color code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Color name" Type="nvarchar" MaxLength="255" />
+          <Property Name="is mettalic?" Type="bit" />
+          <Property Name="Name EN" Type="nvarchar" MaxLength="255" />
+          <Property Name="Color name (EN)" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="middlename" Type="nvarchar" MaxLength="255" />
+          <Property Name="passport serial" Type="float" />
+          <Property Name="passport number" Type="float" />
+          <Property Name="postcode" Type="float" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="address life" Type="nvarchar" MaxLength="255" />
+          <Property Name="company" Type="nvarchar" MaxLength="255" />
+          <Property Name="jobname" Type="nvarchar" MaxLength="255" />
+          <Property Name="phone" Type="float" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="photo" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="photoBinary" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="DTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Info" Type="text" />
+          <Property Name="Dies" Type="nchar" MaxLength="10" />
+          <Property Name="Class" Type="int" />
+          <Property Name="data_time" Type="date" />
+        </EntityType>
+        <EntityType Name="DTP_Photo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="Id_DTP" Type="int" />
+        </EntityType>
+        <EntityType Name="EngineType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="eng_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="licence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="licence date" Type="date" />
+          <Property Name="expire date" Type="date" />
+          <Property Name="licence series" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="owner" Type="int" />
+        </EntityType>
+        <EntityType Name="Members_DTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nomer" Type="int" />
+          <Property Name="Id_DTP" Type="int" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="color" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status_history_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_VU" Type="int" />
+          <Property Name="id_Status" Type="int" />
+          <Property Name="desk" Type="text" />
+          <Property Name="date" Type="date" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfDrive">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Auto_Color">
+          <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="Color num" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_EngineType">
+          <End Role="TypeOfDrive" Type="Self.TypeOfDrive" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDrive">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="TypeOfDriveId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_EngineType2">
+          <End Role="EngineType" Type="Self.EngineType" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EngineType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="TypeOfEngineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryLicence_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryLicence" Type="Self.CategoryLicence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="letter" />
+            </Principal>
+            <Dependent Role="CategoryLicence">
+              <PropertyRef Name="category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CategoryLicence_licence">
+          <End Role="licence" Type="Self.licence" Multiplicity="1" />
+          <End Role="CategoryLicence" Type="Self.CategoryLicence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="licence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CategoryLicence">
+              <PropertyRef Name="id_licence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTP_Class_DTP">
+          <End Role="Class_DTP" Type="Self.Class_DTP" Multiplicity="0..1" />
+          <End Role="DTP" Type="Self.DTP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class_DTP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DTP">
+              <PropertyRef Name="Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTP_Photo_DTP">
+          <End Role="DTP" Type="Self.DTP" Multiplicity="0..1" />
+          <End Role="DTP_Photo" Type="Self.DTP_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DTP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DTP_Photo">
+              <PropertyRef Name="Id_DTP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_licence_Drivers">
+          <End Role="Drivers" Type="Self.Drivers" Multiplicity="0..1" />
+          <End Role="licence" Type="Self.licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="licence">
+              <PropertyRef Name="owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_DTP_DTP">
+          <End Role="DTP" Type="Self.DTP" Multiplicity="0..1" />
+          <End Role="Members_DTP" Type="Self.Members_DTP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DTP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Members_DTP">
+              <PropertyRef Name="Id_DTP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_history_change_licence">
+          <End Role="licence" Type="Self.licence" Multiplicity="0..1" />
+          <End Role="Status_history_change" Type="Self.Status_history_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="licence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_history_change">
+              <PropertyRef Name="id_VU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_history_change_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Status_history_change" Type="Self.Status_history_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_history_change">
+              <PropertyRef Name="id_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище autoinspecModelContainer">
+          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryLicence" EntityType="Self.CategoryLicence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class_DTP" EntityType="Self.Class_DTP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DTP" EntityType="Self.DTP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DTP_Photo" EntityType="Self.DTP_Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EngineType" EntityType="Self.EngineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="licence" EntityType="Self.licence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members_DTP" EntityType="Self.Members_DTP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_history_change" EntityType="Self.Status_history_change" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Auto_Color" Association="Self.FK_Auto_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_Drivers" Association="Self.FK_Auto_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_EngineType" Association="Self.FK_Auto_EngineType">
+            <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_EngineType2" Association="Self.FK_Auto_EngineType2">
+            <End Role="EngineType" EntitySet="EngineType" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryLicence_Category" Association="Self.FK_CategoryLicence_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryLicence" EntitySet="CategoryLicence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryLicence_licence" Association="Self.FK_CategoryLicence_licence">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="CategoryLicence" EntitySet="CategoryLicence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTP_Class_DTP" Association="Self.FK_DTP_Class_DTP">
+            <End Role="Class_DTP" EntitySet="Class_DTP" />
+            <End Role="DTP" EntitySet="DTP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTP_Photo_DTP" Association="Self.FK_DTP_Photo_DTP">
+            <End Role="DTP" EntitySet="DTP" />
+            <End Role="DTP_Photo" EntitySet="DTP_Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_licence_Drivers" Association="Self.FK_licence_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_DTP_DTP" Association="Self.FK_Members_DTP_DTP">
+            <End Role="DTP" EntitySet="DTP" />
+            <End Role="Members_DTP" EntitySet="Members_DTP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_history_change_licence" Association="Self.FK_Status_history_change_licence">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="Status_history_change" EntitySet="Status_history_change" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_history_change_Status" Association="Self.FK_Status_history_change_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Status_history_change" EntitySet="Status_history_change" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="autoinspecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="autoinspecEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auto" EntityType="autoinspecModel.Auto" />
+          <EntitySet Name="Category" EntityType="autoinspecModel.Category" />
+          <EntitySet Name="Class_DTP" EntityType="autoinspecModel.Class_DTP" />
+          <EntitySet Name="Color" EntityType="autoinspecModel.Color" />
+          <EntitySet Name="Drivers" EntityType="autoinspecModel.Drivers" />
+          <EntitySet Name="DTP" EntityType="autoinspecModel.DTP" />
+          <EntitySet Name="DTP_Photo" EntityType="autoinspecModel.DTP_Photo" />
+          <EntitySet Name="EngineType" EntityType="autoinspecModel.EngineType" />
+          <EntitySet Name="licence" EntityType="autoinspecModel.licence" />
+          <EntitySet Name="Members_DTP" EntityType="autoinspecModel.Members_DTP" />
+          <EntitySet Name="Status" EntityType="autoinspecModel.Status" />
+          <EntitySet Name="Status_history_change" EntityType="autoinspecModel.Status_history_change" />
+          <EntitySet Name="sysdiagrams" EntityType="autoinspecModel.sysdiagrams" />
+          <EntitySet Name="TypeOfDrive" EntityType="autoinspecModel.TypeOfDrive" />
+          <AssociationSet Name="FK_Auto_Color" Association="autoinspecModel.FK_Auto_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_Drivers" Association="autoinspecModel.FK_Auto_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_EngineType" Association="autoinspecModel.FK_Auto_EngineType">
+            <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auto_EngineType2" Association="autoinspecModel.FK_Auto_EngineType2">
+            <End Role="EngineType" EntitySet="EngineType" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTP_Class_DTP" Association="autoinspecModel.FK_DTP_Class_DTP">
+            <End Role="Class_DTP" EntitySet="Class_DTP" />
+            <End Role="DTP" EntitySet="DTP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_licence_Drivers" Association="autoinspecModel.FK_licence_Drivers">
+            <End Role="Drivers" EntitySet="Drivers" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTP_Photo_DTP" Association="autoinspecModel.FK_DTP_Photo_DTP">
+            <End Role="DTP" EntitySet="DTP" />
+            <End Role="DTP_Photo" EntitySet="DTP_Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_DTP_DTP" Association="autoinspecModel.FK_Members_DTP_DTP">
+            <End Role="DTP" EntitySet="DTP" />
+            <End Role="Members_DTP" EntitySet="Members_DTP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_history_change_licence" Association="autoinspecModel.FK_Status_history_change_licence">
+            <End Role="licence" EntitySet="licence" />
+            <End Role="Status_history_change" EntitySet="Status_history_change" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_history_change_Status" Association="autoinspecModel.FK_Status_history_change_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Status_history_change" EntitySet="Status_history_change" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryLicence" Association="autoinspecModel.CategoryLicence">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="licence" EntitySet="licence" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="VIN" />
+          </Key>
+          <Property Name="VIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="weight" Type="Int32" />
+          <Property Name="color" Type="Int32" />
+          <Property Name="TypeOfDriveId" Type="Int32" />
+          <Property Name="owner" Type="Int32" />
+          <Property Name="TypeOfEngineId" Type="Int32" />
+          <NavigationProperty Name="Color1" Relationship="autoinspecModel.FK_Auto_Color" FromRole="Auto" ToRole="Color" />
+          <NavigationProperty Name="Drivers" Relationship="autoinspecModel.FK_Auto_Drivers" FromRole="Auto" ToRole="Drivers" />
+          <NavigationProperty Name="TypeOfDrive" Relationship="autoinspecModel.FK_Auto_EngineType" FromRole="Auto" ToRole="TypeOfDrive" />
+          <NavigationProperty Name="EngineType" Relationship="autoinspecModel.FK_Auto_EngineType2" FromRole="Auto" ToRole="EngineType" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="letter" />
+          </Key>
+          <Property Name="letter" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="licence" Relationship="autoinspecModel.CategoryLicence" FromRole="Category" ToRole="licence" />
+        </EntityType>
+        <EntityType Name="Class_DTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DTP" Relationship="autoinspecModel.FK_DTP_Class_DTP" FromRole="Class_DTP" ToRole="DTP" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="Color_num" />
+          </Key>
+          <Property Name="Color_num" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Color_code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Color_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="is_mettalic_" Type="Boolean" />
+          <Property Name="Name_EN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Color_name__EN_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_Color" FromRole="Color" ToRole="Auto" />
+        </EntityType>
+        <EntityType Name="Drivers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="middlename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="passport_serial" Type="Double" />
+          <Property Name="passport_number" Type="Double" />
+          <Property Name="postcode" Type="Double" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="address_life" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="company" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="jobname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="Double" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="photoBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_Drivers" FromRole="Drivers" ToRole="Auto" />
+          <NavigationProperty Name="licence" Relationship="autoinspecModel.FK_licence_Drivers" FromRole="Drivers" ToRole="licence" />
+        </EntityType>
+        <EntityType Name="DTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Dies" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Class" Type="Int32" />
+          <Property Name="data_time" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Class_DTP" Relationship="autoinspecModel.FK_DTP_Class_DTP" FromRole="DTP" ToRole="Class_DTP" />
+          <NavigationProperty Name="DTP_Photo" Relationship="autoinspecModel.FK_DTP_Photo_DTP" FromRole="DTP" ToRole="DTP_Photo" />
+          <NavigationProperty Name="Members_DTP" Relationship="autoinspecModel.FK_Members_DTP_DTP" FromRole="DTP" ToRole="Members_DTP" />
+        </EntityType>
+        <EntityType Name="DTP_Photo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Id_DTP" Type="Int32" />
+          <NavigationProperty Name="DTP" Relationship="autoinspecModel.FK_DTP_Photo_DTP" FromRole="DTP_Photo" ToRole="DTP" />
+        </EntityType>
+        <EntityType Name="EngineType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="eng_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_EngineType2" FromRole="EngineType" ToRole="Auto" />
+        </EntityType>
+        <EntityType Name="licence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="licence_date" Type="DateTime" Precision="0" />
+          <Property Name="expire_date" Type="DateTime" Precision="0" />
+          <Property Name="licence_series" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="owner" Type="Int32" />
+          <NavigationProperty Name="Drivers" Relationship="autoinspecModel.FK_licence_Drivers" FromRole="licence" ToRole="Drivers" />
+          <NavigationProperty Name="Status_history_change" Relationship="autoinspecModel.FK_Status_history_change_licence" FromRole="licence" ToRole="Status_history_change" />
+          <NavigationProperty Name="Category" Relationship="autoinspecModel.CategoryLicence" FromRole="licence" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Members_DTP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nomer" Type="Int32" />
+          <Property Name="Id_DTP" Type="Int32" />
+          <NavigationProperty Name="DTP" Relationship="autoinspecModel.FK_Members_DTP_DTP" FromRole="Members_DTP" ToRole="DTP" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Status_history_change" Relationship="autoinspecModel.FK_Status_history_change_Status" FromRole="Status" ToRole="Status_history_change" />
+        </EntityType>
+        <EntityType Name="Status_history_change">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id_VU" Type="Int32" />
+          <Property Name="id_Status" Type="Int32" />
+          <Property Name="desk" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="licence" Relationship="autoinspecModel.FK_Status_history_change_licence" FromRole="Status_history_change" ToRole="licence" />
+          <NavigationProperty Name="Status" Relationship="autoinspecModel.FK_Status_history_change_Status" FromRole="Status_history_change" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeOfDrive">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_EngineType" FromRole="TypeOfDrive" ToRole="Auto" />
+        </EntityType>
+        <Association Name="FK_Auto_Color">
+          <End Type="autoinspecModel.Color" Role="Color" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="Color_num" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="color" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_Drivers">
+          <End Type="autoinspecModel.Drivers" Role="Drivers" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_EngineType">
+          <End Type="autoinspecModel.TypeOfDrive" Role="TypeOfDrive" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfDrive">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="TypeOfDriveId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auto_EngineType2">
+          <End Type="autoinspecModel.EngineType" Role="EngineType" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EngineType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="TypeOfEngineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTP_Class_DTP">
+          <End Type="autoinspecModel.Class_DTP" Role="Class_DTP" Multiplicity="0..1" />
+          <End Type="autoinspecModel.DTP" Role="DTP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class_DTP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DTP">
+              <PropertyRef Name="Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_licence_Drivers">
+          <End Type="autoinspecModel.Drivers" Role="Drivers" Multiplicity="0..1" />
+          <End Type="autoinspecModel.licence" Role="licence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drivers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="licence">
+              <PropertyRef Name="owner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTP_Photo_DTP">
+          <End Type="autoinspecModel.DTP" Role="DTP" Multiplicity="0..1" />
+          <End Type="autoinspecModel.DTP_Photo" Role="DTP_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DTP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DTP_Photo">
+              <PropertyRef Name="Id_DTP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_DTP_DTP">
+          <End Type="autoinspecModel.DTP" Role="DTP" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Members_DTP" Role="Members_DTP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DTP">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Members_DTP">
+              <PropertyRef Name="Id_DTP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_history_change_licence">
+          <End Type="autoinspecModel.licence" Role="licence" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Status_history_change" Role="Status_history_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="licence">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_history_change">
+              <PropertyRef Name="id_VU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_history_change_Status">
+          <End Type="autoinspecModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="autoinspecModel.Status_history_change" Role="Status_history_change" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_history_change">
+              <PropertyRef Name="id_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryLicence">
+          <End Type="autoinspecModel.Category" Role="Category" Multiplicity="*" />
+          <End Type="autoinspecModel.licence" Role="licence" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище autoinspecModelContainer" CdmEntityContainer="autoinspecEntities1">
+          <EntitySetMapping Name="Auto">
+            <EntityTypeMapping TypeName="autoinspecModel.Auto">
+              <MappingFragment StoreEntitySet="Auto">
+                <ScalarProperty Name="TypeOfEngineId" ColumnName="TypeOfEngineId" />
+                <ScalarProperty Name="owner" ColumnName="owner" />
+                <ScalarProperty Name="TypeOfDriveId" ColumnName="TypeOfDriveId" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="autoinspecModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="letter" ColumnName="letter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Class_DTP">
+            <EntityTypeMapping TypeName="autoinspecModel.Class_DTP">
+              <MappingFragment StoreEntitySet="Class_DTP">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Color">
+            <EntityTypeMapping TypeName="autoinspecModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="Color_name__EN_" ColumnName="Color name (EN)" />
+                <ScalarProperty Name="Name_EN" ColumnName="Name EN" />
+                <ScalarProperty Name="is_mettalic_" ColumnName="is mettalic?" />
+                <ScalarProperty Name="Color_name" ColumnName="Color name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color_code" ColumnName="Color code" />
+                <ScalarProperty Name="Color_num" ColumnName="Color num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="autoinspecModel.Drivers">
+              <MappingFragment StoreEntitySet="Drivers">
+                <ScalarProperty Name="photoBinary" ColumnName="photoBinary" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="address_life" ColumnName="address life" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="passport_number" ColumnName="passport number" />
+                <ScalarProperty Name="passport_serial" ColumnName="passport serial" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTP">
+            <EntityTypeMapping TypeName="autoinspecModel.DTP">
+              <MappingFragment StoreEntitySet="DTP">
+                <ScalarProperty Name="data_time" ColumnName="data_time" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Dies" ColumnName="Dies" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTP_Photo">
+            <EntityTypeMapping TypeName="autoinspecModel.DTP_Photo">
+              <MappingFragment StoreEntitySet="DTP_Photo">
+                <ScalarProperty Name="Id_DTP" ColumnName="Id_DTP" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EngineType">
+            <EntityTypeMapping TypeName="autoinspecModel.EngineType">
+              <MappingFragment StoreEntitySet="EngineType">
+                <ScalarProperty Name="eng_name" ColumnName="eng_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="licence">
+            <EntityTypeMapping TypeName="autoinspecModel.licence">
+              <MappingFragment StoreEntitySet="licence">
+                <ScalarProperty Name="owner" ColumnName="owner" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="licence_series" ColumnName="licence series" />
+                <ScalarProperty Name="expire_date" ColumnName="expire date" />
+                <ScalarProperty Name="licence_date" ColumnName="licence date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members_DTP">
+            <EntityTypeMapping TypeName="autoinspecModel.Members_DTP">
+              <MappingFragment StoreEntitySet="Members_DTP">
+                <ScalarProperty Name="Id_DTP" ColumnName="Id_DTP" />
+                <ScalarProperty Name="Nomer" ColumnName="Nomer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="autoinspecModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_history_change">
+            <EntityTypeMapping TypeName="autoinspecModel.Status_history_change">
+              <MappingFragment StoreEntitySet="Status_history_change">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="desk" ColumnName="desk" />
+                <ScalarProperty Name="id_Status" ColumnName="id_Status" />
+                <ScalarProperty Name="id_VU" ColumnName="id_VU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="autoinspecModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfDrive">
+            <EntityTypeMapping TypeName="autoinspecModel.TypeOfDrive">
+              <MappingFragment StoreEntitySet="TypeOfDrive">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CategoryLicence" TypeName="autoinspecModel.CategoryLicence" StoreEntitySet="CategoryLicence">
+            <EndProperty Name="licence">
+              <ScalarProperty Name="id" ColumnName="id_licence" />
+            </EndProperty>
+            <EndProperty Name="Category">
+              <ScalarProperty Name="letter" ColumnName="category" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

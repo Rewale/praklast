@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="autoinspecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="autoinspecEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Auto" EntityType="autoinspecModel.Auto" />
+    <EntitySet Name="Category" EntityType="autoinspecModel.Category" />
+    <EntitySet Name="Drivers" EntityType="autoinspecModel.Drivers" />
+    <EntitySet Name="EngineType" EntityType="autoinspecModel.EngineType" />
+    <EntitySet Name="licence" EntityType="autoinspecModel.licence" />
+    <EntitySet Name="sysdiagrams" EntityType="autoinspecModel.sysdiagrams" />
+    <EntitySet Name="TypeOfDrive" EntityType="autoinspecModel.TypeOfDrive" />
+    <AssociationSet Name="FK_Auto_Drivers" Association="autoinspecModel.FK_Auto_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_EngineType" Association="autoinspecModel.FK_Auto_EngineType">
+      <End Role="TypeOfDrive" EntitySet="TypeOfDrive" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auto_EngineType2" Association="autoinspecModel.FK_Auto_EngineType2">
+      <End Role="EngineType" EntitySet="EngineType" />
+      <End Role="Auto" EntitySet="Auto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_licence_Drivers" Association="autoinspecModel.FK_licence_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="licence" EntitySet="licence" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryLicence" Association="autoinspecModel.CategoryLicence">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="licence" EntitySet="licence" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Auto">
+    <Key>
+      <PropertyRef Name="VIN" />
+    </Key>
+    <Property Name="VIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="year" Type="Int32" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="color" Type="Int32" />
+    <Property Name="TypeOfDriveId" Type="Int32" />
+    <Property Name="owner" Type="Int32" />
+    <Property Name="TypeOfEngineId" Type="Int32" />
+    <NavigationProperty Name="Drivers" Relationship="autoinspecModel.FK_Auto_Drivers" FromRole="Auto" ToRole="Drivers" />
+    <NavigationProperty Name="TypeOfDrive" Relationship="autoinspecModel.FK_Auto_EngineType" FromRole="Auto" ToRole="TypeOfDrive" />
+    <NavigationProperty Name="EngineType" Relationship="autoinspecModel.FK_Auto_EngineType2" FromRole="Auto" ToRole="EngineType" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="letter" />
+    </Key>
+    <Property Name="letter" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="licence" Relationship="autoinspecModel.CategoryLicence" FromRole="Category" ToRole="licence" />
+  </EntityType>
+  <EntityType Name="Drivers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="middlename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="passport_serial" Type="Double" />
+    <Property Name="passport_number" Type="Double" />
+    <Property Name="postcode" Type="Double" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="address_life" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="company" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="jobname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="Double" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="photoBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_Drivers" FromRole="Drivers" ToRole="Auto" />
+    <NavigationProperty Name="licence" Relationship="autoinspecModel.FK_licence_Drivers" FromRole="Drivers" ToRole="licence" />
+  </EntityType>
+  <EntityType Name="EngineType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eng_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_EngineType2" FromRole="EngineType" ToRole="Auto" />
+  </EntityType>
+  <EntityType Name="licence">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="licence_date" Type="DateTime" Precision="0" />
+    <Property Name="expire_date" Type="DateTime" Precision="0" />
+    <Property Name="licence_series" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="owner" Type="Int32" />
+    <NavigationProperty Name="Drivers" Relationship="autoinspecModel.FK_licence_Drivers" FromRole="licence" ToRole="Drivers" />
+    <NavigationProperty Name="Category" Relationship="autoinspecModel.CategoryLicence" FromRole="licence" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TypeOfDrive">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Auto" Relationship="autoinspecModel.FK_Auto_EngineType" FromRole="TypeOfDrive" ToRole="Auto" />
+  </EntityType>
+  <Association Name="FK_Auto_Drivers">
+    <End Type="autoinspecModel.Drivers" Role="Drivers" Multiplicity="0..1" />
+    <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_EngineType">
+    <End Type="autoinspecModel.TypeOfDrive" Role="TypeOfDrive" Multiplicity="0..1" />
+    <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfDrive">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="TypeOfDriveId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auto_EngineType2">
+    <End Type="autoinspecModel.EngineType" Role="EngineType" Multiplicity="0..1" />
+    <End Type="autoinspecModel.Auto" Role="Auto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EngineType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Auto">
+        <PropertyRef Name="TypeOfEngineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_licence_Drivers">
+    <End Type="autoinspecModel.Drivers" Role="Drivers" Multiplicity="0..1" />
+    <End Type="autoinspecModel.licence" Role="licence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="licence">
+        <PropertyRef Name="owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryLicence">
+    <End Type="autoinspecModel.Category" Role="Category" Multiplicity="*" />
+    <End Type="autoinspecModel.licence" Role="licence" Multiplicity="*" />
+  </Association>
+</Schema>
