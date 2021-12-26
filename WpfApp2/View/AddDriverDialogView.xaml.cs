@@ -110,7 +110,8 @@ namespace WpfApp2.View
             const int textOffset = fontSize + 10;
 
             System.Drawing.Image photoDriver = ConvertImageFromByte(driver.photoBinary);
-            System.Drawing.Image maket = System.Drawing.Image.FromFile(@"C:\Users\usersql\Desktop\УП 01 Учебная практика\Ресурсы\Сессия 3\driver_license_template.jpg");
+            var dir = Directory.GetCurrentDirectory() + @"\driver_license_template.jpg";
+            System.Drawing.Image maket = System.Drawing.Image.FromFile(dir);
 
             photoDriver = ResizeImage(photoDriver, image_x_end - image_x_start + offsetWidth, image_y_end - image_y_start + offsetHeigt);
 
@@ -140,7 +141,22 @@ namespace WpfApp2.View
 
             g.DrawImage(photoDriver, image_x_start, image_y_start);
 
-            maket.Save($@"C:\Users\usersql\Desktop\УП 01 Учебная практика\{driver.name}.jpeg", ImageFormat.Jpeg);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "jpg files (*.jpg)|*.jpg";
+            
+            openFileDialog.RestoreDirectory = true;
+
+            if ((bool)openFileDialog.ShowDialog())
+            {
+
+                //Get the path of specified file
+                var filePath = openFileDialog.FileName;
+                maket.Save(filePath, ImageFormat.Jpeg);
+            }
+
+           
         }
 
         public static System.Drawing.Image ConvertImageFromByte(byte[] byteArray)
