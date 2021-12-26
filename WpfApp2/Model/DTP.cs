@@ -17,8 +17,8 @@ namespace WpfApp2.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DTP()
         {
-            this.DTP_Photo = new HashSet<DTP_Photo>();
             this.Members_DTP = new HashSet<Members_DTP>();
+            this.DTP_Photo = new HashSet<DTP_Photo>();
         }
     
         public int Id { get; set; }
@@ -29,19 +29,8 @@ namespace WpfApp2.Model
     
         public virtual Class_DTP Class_DTP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DTP_Photo> DTP_Photo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Members_DTP> Members_DTP { get; set; }
-
-        public string ColorID
-        {
-            get
-            {
-                if (Dies == null)
-                    return "Red";
-
-                return "White";
-            }            
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DTP_Photo> DTP_Photo { get; set; }
     }
 }

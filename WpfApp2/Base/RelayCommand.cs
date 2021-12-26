@@ -14,7 +14,7 @@ namespace WpfApp2.Base
 {
     public class RelayCommand : ICommand
     {
-        private const int timeToClose = 60;
+        private const int timeToClose = 1200;
         private static int timeSpend = 0;
         private const int timeToNotify = 10;
         public static void ResetTimer()

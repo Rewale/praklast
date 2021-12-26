@@ -143,7 +143,7 @@ namespace WpfApp2.View
             maket.Save($@"C:\Users\usersql\Desktop\УП 01 Учебная практика\{driver.name}.jpeg", ImageFormat.Jpeg);
         }
 
-        private System.Drawing.Image ConvertImageFromByte(byte[] byteArray)
+        public static System.Drawing.Image ConvertImageFromByte(byte[] byteArray)
         {
             using (var ms = new MemoryStream(byteArray))
             {
@@ -151,7 +151,7 @@ namespace WpfApp2.View
             }
         }
 
-        private Bitmap ResizeImage(System.Drawing.Image image, int width, int height)
+        public static Bitmap ResizeImage(System.Drawing.Image image, int width, int height)
         {
             var destRect = new System.Drawing.Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,67 +32,17 @@ namespace WpfApp2.View
         {
             InitializeComponent();
             DataContext = dtp;
+            classComboBox.ItemsSource = db.GetContext().Class_DTP.ToList();
         }
-        //private byte[] InkCanvasToByte()
-        //{
-        //    using (MemoryStream ms = new MemoryStream())
-        //    {
-        //        if (ink.Strokes.Count > 0)
-        //        {
-        //            ink.Strokes.Save(ms, true);
-        //            byte[] unencryptedSignature = ms.ToArray();
-        //            //File.WriteAllBytes(@"C:\Users\usersql\Desktop\test.png", unencryptedSignature);
-        //            return unencryptedSignature;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //}
-        //[Serializable]
-        //public sealed class MyCustomStrokes
-        //{
-        //    public MyCustomStrokes() { }
-        //    /// <SUMMARY>
-        //    /// The first index is for the stroke no.
-        //    /// The second index is for the keep the 2D point of the Stroke.
-        //    /// </SUMMARY>
-        //    public Point[][] StrokeCollection;
-        //}
-        //private void setCanvas()
-        //{
-        //    try
-        //    {
-        //        BinaryFormatter bf = new BinaryFormatter();
-        //        MemoryStream ms = new MemoryStream(dtp.DTP_Photo.FirstOrDefault().Photo);
-        //        MyCustomStrokes customStrokes = bf.Deserialize(ms) as MyCustomStrokes;
-        //        for (int i = 0; i < customStrokes.StrokeCollection.Length; i++)
-        //        {
-        //            if (customStrokes.StrokeCollection[i] != null)
-        //            {
-        //                StylusPointCollection stylusCollection = new
-        //                  StylusPointCollection(customStrokes.StrokeCollection[i]);
-        //                Stroke stroke = new Stroke(stylusCollection);
-        //                StrokeCollection strokes = new StrokeCollection();
-        //                strokes.Add(stroke);
-        //                this.ink.Strokes.Add(strokes);
-        //            }
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.Windows.MessageBox.Show(ex.Message);
-        //    }
-        //}
-
+       
         public AddDTPDialogView(DTP dtp)
         {
             this.dtp = dtp;
             InitializeComponent();
             DataContext = dtp;
             isNew = false;
+            classComboBox.ItemsSource = db.GetContext().Class_DTP.ToList();
+
             //setCanvas();
         }
         // Написать вью модел
@@ -122,6 +73,71 @@ namespace WpfApp2.View
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void addPhotoClick(object sender, RoutedEventArgs e)
+        {
+            RelayCommand.ResetTimer();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.InitialDirectory = "c:\\";
+            openFileDialog.Filter = "png files (*.png)|*.png|jpg files (*.jpg)|*.jpg";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if ((bool)openFileDialog.ShowDialog())
+            {
+
+                //Get the path of specified file
+                var filePath = openFileDialog.FileName;
+                try
+                {
+                    dtp.DTP_Photo.Add(new DTP_Photo() { Photo = File.ReadAllBytes(filePath) });
+                    photo.ItemsSource = dtp.DTP_Photo.ToList();
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка чтения картинки");
+                }
+            }
+        }
+
+        private void addMemberClick(object sender, RoutedEventArgs e)
+        {
+            RelayCommand.ResetTimer();
+
+            dtp.Members_DTP.Add(new Members_DTP() { Name = "Участник 1", Nomer = 22222 });
+            members.ItemsSource = dtp.Members_DTP.ToList();
+        }
+
+        private void rotateImage(object sender, RoutedEventArgs e)
+        {
+            var photoBinary = (((sender as Button).DataContext) as DTP_Photo).Photo;
+            System.Drawing.Image photoDTP = ConvertImageFromByte(photoBinary);
+
+            photoDTP.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+
+            (((sender as Button).DataContext) as DTP_Photo).Photo = imageToByteArray(photoDTP);
+
+            db.GetContext().SaveChanges();
+
+            photo.ItemsSource = dtp.DTP_Photo.ToList();
+        }
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
+
+        public static System.Drawing.Image ConvertImageFromByte(byte[] byteArray)
+        {
+            using (var ms = new MemoryStream(byteArray))
+            {
+                return System.Drawing.Image.FromStream(ms);
+            }
         }
     }
 }

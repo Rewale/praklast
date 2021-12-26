@@ -176,9 +176,6 @@
     <Compile Include="Model\Status_history_change.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\TypeOfDrive.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -274,8 +271,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Desktop\VIN_LIB-master\VIN_LIB\VIN_LIB.csproj">
-      <Project>{83A93E0A-E7B7-4238-944B-DEFDA05569F7}</Project>
+    <ProjectReference Include="..\..\..\VIN_LIB\VIN_LIB\VIN_LIB.csproj">
+      <Project>{83a93e0a-e7b7-4238-944b-defda05569f7}</Project>
       <Name>VIN_LIB</Name>
     </ProjectReference>
   </ItemGroup>

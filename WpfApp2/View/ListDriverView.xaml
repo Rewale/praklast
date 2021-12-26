@@ -20,14 +20,7 @@
         </Grid.RowDefinitions>
         <DataGrid ItemsSource="{Binding drivers}" AutoGenerateColumns="False" SelectedItem="{Binding selectedDriver}">
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Rectangle Width="30" Fill="{Binding CurrentLicence.ColorID}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-
-                </DataGridTemplateColumn>
+                
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -46,7 +39,7 @@
                 <DataGridTextColumn Header="адрес" Binding="{Binding address}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Город" Binding="{Binding address_life}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Компания" Binding="{Binding company}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Работа" Binding="{Binding jobename}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Работа" Binding="{Binding jobname}"></DataGridTextColumn>
                 <DataGridTextColumn Header="телефон" Binding="{Binding phone}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Маил" Binding="{Binding email}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Фото" Binding="{Binding photo}"></DataGridTextColumn>

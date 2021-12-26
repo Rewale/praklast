@@ -7,13 +7,11 @@
     <EntitySet Name="Color" EntityType="autoinspecModel.Color" />
     <EntitySet Name="Drivers" EntityType="autoinspecModel.Drivers" />
     <EntitySet Name="DTP" EntityType="autoinspecModel.DTP" />
-    <EntitySet Name="DTP_Photo" EntityType="autoinspecModel.DTP_Photo" />
     <EntitySet Name="EngineType" EntityType="autoinspecModel.EngineType" />
     <EntitySet Name="licence" EntityType="autoinspecModel.licence" />
     <EntitySet Name="Members_DTP" EntityType="autoinspecModel.Members_DTP" />
     <EntitySet Name="Status" EntityType="autoinspecModel.Status" />
     <EntitySet Name="Status_history_change" EntityType="autoinspecModel.Status_history_change" />
-    <EntitySet Name="sysdiagrams" EntityType="autoinspecModel.sysdiagrams" />
     <EntitySet Name="TypeOfDrive" EntityType="autoinspecModel.TypeOfDrive" />
     <AssociationSet Name="FK_Auto_Color" Association="autoinspecModel.FK_Auto_Color">
       <End Role="Color" EntitySet="Color" />
@@ -39,10 +37,6 @@
       <End Role="Drivers" EntitySet="Drivers" />
       <End Role="licence" EntitySet="licence" />
     </AssociationSet>
-    <AssociationSet Name="FK_DTP_Photo_DTP" Association="autoinspecModel.FK_DTP_Photo_DTP">
-      <End Role="DTP" EntitySet="DTP" />
-      <End Role="DTP_Photo" EntitySet="DTP_Photo" />
-    </AssociationSet>
     <AssociationSet Name="FK_Members_DTP_DTP" Association="autoinspecModel.FK_Members_DTP_DTP">
       <End Role="DTP" EntitySet="DTP" />
       <End Role="Members_DTP" EntitySet="Members_DTP" />
@@ -58,6 +52,11 @@
     <AssociationSet Name="CategoryLicence" Association="autoinspecModel.CategoryLicence">
       <End Role="Category" EntitySet="Category" />
       <End Role="licence" EntitySet="licence" />
+    </AssociationSet>
+    <EntitySet Name="DTP_Photo" EntityType="autoinspecModel.DTP_Photo" />
+    <AssociationSet Name="FK_DTP_Photo_DTP" Association="autoinspecModel.FK_DTP_Photo_DTP">
+      <End Role="DTP" EntitySet="DTP" />
+      <End Role="DTP_Photo" EntitySet="DTP_Photo" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Auto">
@@ -138,17 +137,8 @@
     <Property Name="Class" Type="Int32" />
     <Property Name="data_time" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Class_DTP" Relationship="autoinspecModel.FK_DTP_Class_DTP" FromRole="DTP" ToRole="Class_DTP" />
-    <NavigationProperty Name="DTP_Photo" Relationship="autoinspecModel.FK_DTP_Photo_DTP" FromRole="DTP" ToRole="DTP_Photo" />
     <NavigationProperty Name="Members_DTP" Relationship="autoinspecModel.FK_Members_DTP_DTP" FromRole="DTP" ToRole="Members_DTP" />
-  </EntityType>
-  <EntityType Name="DTP_Photo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="Id_DTP" Type="Int32" />
-    <NavigationProperty Name="DTP" Relationship="autoinspecModel.FK_DTP_Photo_DTP" FromRole="DTP_Photo" ToRole="DTP" />
+    <NavigationProperty Name="DTP_Photo" Relationship="autoinspecModel.FK_DTP_Photo_DTP" FromRole="DTP" ToRole="DTP_Photo" />
   </EntityType>
   <EntityType Name="EngineType">
     <Key>
@@ -203,16 +193,6 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="licence" Relationship="autoinspecModel.FK_Status_history_change_licence" FromRole="Status_history_change" ToRole="licence" />
     <NavigationProperty Name="Status" Relationship="autoinspecModel.FK_Status_history_change_Status" FromRole="Status_history_change" ToRole="Status" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TypeOfDrive">
     <Key>
@@ -294,18 +274,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DTP_Photo_DTP">
-    <End Type="autoinspecModel.DTP" Role="DTP" Multiplicity="0..1" />
-    <End Type="autoinspecModel.DTP_Photo" Role="DTP_Photo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DTP">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="DTP_Photo">
-        <PropertyRef Name="Id_DTP" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Members_DTP_DTP">
     <End Type="autoinspecModel.DTP" Role="DTP" Multiplicity="0..1" />
     <End Type="autoinspecModel.Members_DTP" Role="Members_DTP" Multiplicity="*" />
@@ -345,5 +313,26 @@
   <Association Name="CategoryLicence">
     <End Type="autoinspecModel.Category" Role="Category" Multiplicity="*" />
     <End Type="autoinspecModel.licence" Role="licence" Multiplicity="*" />
+  </Association>
+  <EntityType Name="DTP_Photo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Id_DTP" Type="Int32" />
+    <NavigationProperty Name="DTP" Relationship="autoinspecModel.FK_DTP_Photo_DTP" FromRole="DTP_Photo" ToRole="DTP" />
+  </EntityType>
+  <Association Name="FK_DTP_Photo_DTP">
+    <End Type="autoinspecModel.DTP" Role="DTP" Multiplicity="0..1" />
+    <End Type="autoinspecModel.DTP_Photo" Role="DTP_Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DTP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DTP_Photo">
+        <PropertyRef Name="Id_DTP" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

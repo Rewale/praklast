@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\usersql\source\repos\WpfApp2\WpfApp2\obj\Debug\
+C:\Users\23\Source\Repos\Rewale\praklast\WpfApp2\obj\Debug\
 WpfApp2
 none
 false
 DEBUG;TRACE
-C:\Users\usersql\source\repos\WpfApp2\WpfApp2\App.xaml
+C:\Users\23\Source\Repos\Rewale\praklast\WpfApp2\App.xaml
 10-1008630012
 2-1556844510
-40-1880607389
-1312115432610
+39-579600824
+1311277543124
 View\AddAutoDDialogView.xaml;View\AddDriverDialogView.xaml;View\AddDTPDialogView.xaml;View\AddLicensesDialogView.xaml;View\ListAutoView.xaml;View\ListDriverView.xaml;View\ListDTPView.xaml;View\ListLicensesView.xaml;View\MainView.xaml;View\MainWindow.xaml;
 
-False
+True
 

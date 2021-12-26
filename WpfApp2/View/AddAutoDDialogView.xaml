@@ -7,10 +7,10 @@
         xmlns:Model="clr-namespace:WpfApp2.Model" x:Class="WpfApp2.View.AddAutoDDialogView"
         mc:Ignorable="d"
         Title="AddAutoDDialogView" Height="450" Width="800" >
-   
+
     <Grid>
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="249,26,0,0" HorizontalAlignment="Left">
+        <Grid x:Name="grid1" VerticalAlignment="Center"  HorizontalAlignment="Center"  Width="460">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -27,25 +27,27 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="color:"/>
-            <TextBox x:Name="colorTextBox" Width="120" VerticalAlignment="Center" Text="{Binding color, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Manufacturer:"/>
-            <TextBox x:Name="manufacturerTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Manufacturer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Model:"/>
-            <TextBox x:Name="modelTextBox" Width="120" VerticalAlignment="Center" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="owner:"/>
-            <TextBox x:Name="ownerTextBox" Width="120" VerticalAlignment="Center" Text="{Binding owner, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Type Of Drive Id:"/>
-            <TextBox x:Name="typeOfDriveIdTextBox" Width="120" VerticalAlignment="Center" Text="{Binding TypeOfDriveId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Type Of Engine Id:"/>
-            <TextBox x:Name="typeOfEngineIdTextBox" Width="120" VerticalAlignment="Center" Text="{Binding TypeOfEngineId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Цвет:"/>
+            <TextBox x:Name="colorTextBox" Width="335" VerticalAlignment="Center" Text="{Binding color, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Производитель:"/>
+            <TextBox x:Name="manufacturerTextBox" Width="335" VerticalAlignment="Center" Text="{Binding Manufacturer, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Модель:"/>
+            <TextBox x:Name="modelTextBox" Width="335" VerticalAlignment="Center" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Владелец:"/>
+            <ComboBox x:Name="ownerComboBox" Width="335" VerticalAlignment="Center" DisplayMemberPath="middlename" Text="{Binding Drivers, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3,3,-212,3"  HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Тип двигателя:"/>
+            <ComboBox x:Name="typeOfEngineCombobox" Width="335" VerticalAlignment="Center" Text="{Binding EngineType, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3,3,-212,3" HorizontalAlignment="Left" Grid.Column="1"/>
             <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="VIN:"/>
-            <TextBox x:Name="vINTextBox" Width="120" VerticalAlignment="Center" Text="{Binding VIN, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="weight:"/>
-            <TextBox x:Name="weightTextBox" Width="120" VerticalAlignment="Center" Text="{Binding weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="8" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="year:"/>
-            <TextBox x:Name="yearTextBox" Width="120" VerticalAlignment="Center" Text="{Binding year, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="8" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Button Click="Button_Click" Grid.Row=" 9" Grid.ColumnSpan="2" Width="243">Добавить</Button>
+            <TextBox x:Name="vINTextBox" Width="335" VerticalAlignment="Center" Text="{Binding VIN, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Вес:"/>
+            <TextBox x:Name="weightTextBox" Width="335" VerticalAlignment="Center" Text="{Binding weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+            <Label VerticalAlignment="Center" Grid.Row="8" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Год:"/>
+            <TextBox x:Name="yearTextBox" Width="335" VerticalAlignment="Center" Text="{Binding year, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="8" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Цвет:"/>
+            <ComboBox DisplayMemberPath="Name" x:Name="colorCombobox" Width="335" VerticalAlignment="Center" Text="{Binding year, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3,3,-212,3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+
+            <Button HorizontalAlignment="Center" Click="Button_Click" Grid.Row=" 9" Width="243" Grid.Column="1" Margin="0,2,-116,-2">Добавить</Button>
         </Grid>
 
     </Grid>

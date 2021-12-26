@@ -8,28 +8,27 @@
         <EntityTypeShape EntityType="autoinspecModel.Auto" Width="1.5" PointX="6" PointY="3.875" />
         <EntityTypeShape EntityType="autoinspecModel.Category" Width="1.5" PointX="0.75" PointY="1" />
         <EntityTypeShape EntityType="autoinspecModel.Class_DTP" Width="1.5" PointX="5.75" PointY="10.5" />
-        <EntityTypeShape EntityType="autoinspecModel.Color" Width="1.5" PointX="3.75" PointY="0.875" />
+        <EntityTypeShape EntityType="autoinspecModel.Color" Width="1.5" PointX="3.75" PointY="8.5" />
         <EntityTypeShape EntityType="autoinspecModel.Drivers" Width="1.5" PointX="0.75" PointY="3.5" />
         <EntityTypeShape EntityType="autoinspecModel.DTP" Width="1.5" PointX="8" PointY="10" />
-        <EntityTypeShape EntityType="autoinspecModel.DTP_Photo" Width="1.5" PointX="10.25" PointY="11.75" />
-        <EntityTypeShape EntityType="autoinspecModel.EngineType" Width="1.5" PointX="3.75" PointY="8.25" />
+        <EntityTypeShape EntityType="autoinspecModel.EngineType" Width="1.5" PointX="3.75" PointY="0.875" />
         <EntityTypeShape EntityType="autoinspecModel.licence" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="autoinspecModel.Members_DTP" Width="1.5" PointX="10.25" PointY="9" />
+        <EntityTypeShape EntityType="autoinspecModel.Members_DTP" Width="1.5" PointX="10.25" PointY="11.5" />
         <EntityTypeShape EntityType="autoinspecModel.Status" Width="1.5" PointX="6" PointY="0.75" />
         <EntityTypeShape EntityType="autoinspecModel.Status_history_change" Width="1.5" PointX="8.25" PointY="4.5" />
-        <EntityTypeShape EntityType="autoinspecModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="autoinspecModel.TypeOfDrive" Width="1.5" PointX="3.75" PointY="10.75" />
+        <EntityTypeShape EntityType="autoinspecModel.TypeOfDrive" Width="1.5" PointX="3.75" PointY="11.75" />
         <AssociationConnector Association="autoinspecModel.FK_Auto_Color" />
         <AssociationConnector Association="autoinspecModel.FK_Auto_Drivers" />
         <AssociationConnector Association="autoinspecModel.FK_Auto_EngineType" />
         <AssociationConnector Association="autoinspecModel.FK_Auto_EngineType2" />
         <AssociationConnector Association="autoinspecModel.FK_DTP_Class_DTP" />
         <AssociationConnector Association="autoinspecModel.FK_licence_Drivers" />
-        <AssociationConnector Association="autoinspecModel.FK_DTP_Photo_DTP" />
         <AssociationConnector Association="autoinspecModel.FK_Members_DTP_DTP" />
         <AssociationConnector Association="autoinspecModel.FK_Status_history_change_licence" />
         <AssociationConnector Association="autoinspecModel.FK_Status_history_change_Status" />
         <AssociationConnector Association="autoinspecModel.CategoryLicence" />
+        <EntityTypeShape EntityType="autoinspecModel.DTP_Photo" Width="1.5" PointX="10.25" PointY="8.375" />
+        <AssociationConnector Association="autoinspecModel.FK_DTP_Photo_DTP" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

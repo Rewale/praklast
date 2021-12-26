@@ -27,6 +27,10 @@ namespace WpfApp2.View
         {
             InitializeComponent();
             DataContext = auto;
+            colorCombobox.ItemsSource = db.GetContext().Color.ToList();
+            ownerComboBox.ItemsSource = db.GetContext().Drivers.ToList();
+            typeOfEngineCombobox.ItemsSource = db.GetContext().EngineType.ToList();
+
         }
        
      
@@ -41,25 +45,44 @@ namespace WpfApp2.View
         // Написать вью модел
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (VIN_LIB.VIN.CheckVIN(vINTextBox.Text))
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            if (!VIN_LIB.VIN.CheckVIN(auto.VIN))
+                stringBuilder.Append("Неверный вин номер");
+
+            if (auto.Drivers == null)
+                stringBuilder.Append("Укажите водителя");
+
+            if (auto.EngineType == null)
+                stringBuilder.Append("Укажите тип двигателя");
+
+            if (auto.Model == null)
+                stringBuilder.Append("Укажите модель");
+
+            if (auto.Color1 == null)
+                stringBuilder.Append("Укажите цвет");
+
+            if(stringBuilder.Length>0)
             {
-                RelayCommand.ResetTimer();
-                try
-                {
-                    if (isNew)
-                        db.GetContext().Auto.Add(auto);
-                    db.GetContext().SaveChanges();
-                    Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+                MessageBox.Show(stringBuilder.ToString(), "Ошибка добавления", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else
+
+
+            RelayCommand.ResetTimer();
+            try
             {
-                MessageBox.Show("Ошибка в вин номере");
+                if (isNew)
+                    db.GetContext().Auto.Add(auto);
+                db.GetContext().SaveChanges();
+                Close();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+           
            
             
         }
